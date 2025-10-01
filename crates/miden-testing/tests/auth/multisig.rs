@@ -151,12 +151,10 @@ async fn test_multisig_2_of_2_with_note_creation() -> anyhow::Result<()> {
 
     let sig_1 = authenticators[0]
         .get_signature(public_keys[0].to_commitment(), &tx_summary)
-        .await?
-        .to_prepared_signature();
+        .await?;
     let sig_2 = authenticators[1]
         .get_signature(public_keys[1].to_commitment(), &tx_summary)
-        .await?
-        .to_prepared_signature();
+        .await?;
 
     // Execute transaction with signatures - should succeed
     let tx_context_execute = mock_chain
@@ -235,12 +233,10 @@ async fn test_multisig_2_of_4_all_signer_combinations() -> anyhow::Result<()> {
 
         let sig_1 = authenticators[*signer1_idx]
             .get_signature(public_keys[*signer1_idx].to_commitment(), &tx_summary)
-            .await?
-            .to_prepared_signature();
+            .await?;
         let sig_2 = authenticators[*signer2_idx]
             .get_signature(public_keys[*signer2_idx].to_commitment(), &tx_summary)
-            .await?
-            .to_prepared_signature();
+            .await?;
 
         // Execute transaction with signatures - should succeed for any combination
         let tx_context_execute = mock_chain
@@ -304,12 +300,10 @@ async fn test_multisig_replay_protection() -> anyhow::Result<()> {
 
     let sig_1 = authenticators[0]
         .get_signature(public_keys[0].to_commitment(), &tx_summary)
-        .await?
-        .to_prepared_signature();
+        .await?;
     let sig_2 = authenticators[1]
         .get_signature(public_keys[1].to_commitment(), &tx_summary)
-        .await?
-        .to_prepared_signature();
+        .await?;
 
     // Execute transaction with signatures - should succeed (first execution)
     let tx_context_execute = mock_chain
