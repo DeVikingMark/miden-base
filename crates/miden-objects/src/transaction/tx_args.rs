@@ -189,18 +189,18 @@ impl TransactionArgs {
         self.advice_inputs.extend(AdviceInputs::default().with_map(new_elements));
     }
 
-    /// Adds the `signature` corresponding to `public_key` on `message` to the advice inputs' map.
+    /// Adds the `signature` corresponding to `pub_key` on `message` to the advice inputs' map.
     ///
     /// The advice inputs' map is extended with the following key:
     ///
-    /// - hash(public_key, message) |-> signature (prepared for VM execution).
+    /// - hash(pub_key, message) |-> signature (prepared for VM execution).
     pub fn add_signature(
         &mut self,
-        public_key_commitment: PublicKeyCommitment,
+        pub_key: PublicKeyCommitment,
         message: Word,
         signature: Signature,
     ) {
-        let pk_word: Word = public_key_commitment.into();
+        let pk_word: Word = pub_key.into();
         self.advice_inputs
             .map
             .insert(Hasher::merge(&[pk_word, message]), signature.to_prepared_signature());

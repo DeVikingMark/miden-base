@@ -251,11 +251,11 @@ impl TransactionContextBuilder {
     /// Add a new signature for the message and the public key.
     pub fn add_signature(
         mut self,
-        public_key_commitment: PublicKeyCommitment,
+        pub_key: PublicKeyCommitment,
         message: Word,
         signature: Signature,
     ) -> Self {
-        self.signatures.push((public_key_commitment, message, signature));
+        self.signatures.push((pub_key, message, signature));
         self
     }
 

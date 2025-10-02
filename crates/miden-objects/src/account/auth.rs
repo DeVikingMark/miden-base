@@ -56,12 +56,12 @@ impl Deserializable for AuthSecretKey {
     }
 }
 
-// SIGNATURE
+// PUBLIC KEY
 // ================================================================================================
 
-/// Commitment to a public key
+/// Commitment to a public key.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct PublicKeyCommitment(pub Word);
+pub struct PublicKeyCommitment(Word);
 
 impl From<RpoFalconPublicKey> for PublicKeyCommitment {
     fn from(value: RpoFalconPublicKey) -> Self {
@@ -80,6 +80,9 @@ impl From<Word> for PublicKeyCommitment {
         Self(value)
     }
 }
+
+// SIGNATURE
+// ================================================================================================
 
 /// Represents a signature object ready for native verification.
 ///
