@@ -379,7 +379,7 @@ fn handle_epilogue_error(epilogue_error: TransactionExecutorError) -> NoteConsum
         | TransactionExecutorError::MissingAuthenticator => {
             // Both these cases signal that there is a probability that the provided note could be
             // consumed if the authentication is provided.
-            NoteConsumptionStatus::UnconsumableWithoutAuthorization
+            NoteConsumptionStatus::ConsumableWithAuthorization
         },
         // TODO: apply additional checks to get the verbose error reason
         _ => NoteConsumptionStatus::Unconsumable,
@@ -400,8 +400,8 @@ pub enum NoteConsumptionStatus {
     Consumable,
     /// The note can be consumed by the account after the required block height is achieved.
     ConsumableAfter(BlockNumber),
-    /// The note cannot be consumed by the account without the authorization.
-    UnconsumableWithoutAuthorization,
+    /// The note can be consumed by the account if proper authorization is provided.
+    ConsumableWithAuthorization,
     /// The note cannot be consumed by the account at the specified conditions (i.e., block
     /// height and account state).    
     Unconsumable,

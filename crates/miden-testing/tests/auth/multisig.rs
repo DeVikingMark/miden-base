@@ -949,9 +949,9 @@ async fn test_check_note_consumability_multisig() -> anyhow::Result<()> {
 
     let notes_checker = NoteConsumptionChecker::new(&tx_executor);
 
-    // this check should return `UnconsumableWithoutAuthorization` variant: the note is consumable,
-    // but authentication is failing
-    let unconsumable_without_authorization = notes_checker
+    // this check should return `ConsumableWithAuthorization` variant: the note is consumable, but
+    // authentication is failing
+    let consumable_with_authorization = notes_checker
         .can_consume(
             multisig_account.id(),
             block_ref,
@@ -960,8 +960,8 @@ async fn test_check_note_consumability_multisig() -> anyhow::Result<()> {
         )
         .await?;
     assert_matches!(
-        unconsumable_without_authorization,
-        NoteConsumptionStatus::UnconsumableWithoutAuthorization
+        consumable_with_authorization,
+        NoteConsumptionStatus::ConsumableWithAuthorization
     );
 
     // execute the transaction to get the summary

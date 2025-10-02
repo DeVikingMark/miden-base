@@ -439,7 +439,7 @@ async fn test_check_note_consumability_without_signatures() -> anyhow::Result<()
         )
         .await?;
 
-    assert_eq!(consumability_info, NoteConsumptionStatus::UnconsumableWithoutAuthorization);
+    assert_eq!(consumability_info, NoteConsumptionStatus::ConsumableWithAuthorization);
 
     Ok(())
 }
