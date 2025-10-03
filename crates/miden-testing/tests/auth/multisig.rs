@@ -975,18 +975,18 @@ async fn test_check_note_consumability_multisig() -> anyhow::Result<()> {
     let tx_summary = SigningInputs::TransactionSummary(tx_summary);
 
     let sig_1 = authenticators[0]
-        .get_signature(public_keys[0].to_commitment(), &tx_summary)
+        .get_signature(public_keys[0].to_commitment().into(), &tx_summary)
         .await?;
     let sig_2 = authenticators[1]
-        .get_signature(public_keys[1].to_commitment(), &tx_summary)
+        .get_signature(public_keys[1].to_commitment().into(), &tx_summary)
         .await?;
 
     // get the transaction context with signatures
     let tx_context_with_signatures = mock_chain
         .build_tx_context(multisig_account.id(), &[p2id_note.id()], &[])?
         .extend_expected_output_notes(vec![OutputNote::Full(p2id_note)])
-        .add_signature(public_keys[0].clone(), msg, sig_1)
-        .add_signature(public_keys[1].clone(), msg, sig_2)
+        .add_signature(public_keys[0].clone().into(), msg, sig_1)
+        .add_signature(public_keys[1].clone().into(), msg, sig_2)
         .auth_args(salt)
         .build()?;
 
