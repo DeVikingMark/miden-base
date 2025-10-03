@@ -59,7 +59,7 @@
 - [BREAKING] Change the signature of TransactionAuthenticator to return the native signature ([#1945](https://github.com/0xMiden/miden-base/pull/1945)).
 - [BREAKING] Rename `MockChainBuilder::add_note` to `add_output_note` ([#1946](https://github.com/0xMiden/miden-base/pull/1946)).
 
-## 0.11.5 (2025-10-01)
+## 0.11.5 (2025-10-02)
 
 - Add new `can_consume` method to the `NoteConsumptionChecker` ([#1928](https://github.com/0xMiden/miden-base/pull/1928)).
 
