@@ -397,29 +397,7 @@ export.account_was_procedure_called_offset
     push.ACCOUNT_WAS_PROCEDURE_CALLED_OFFSET
 end
 
-#! Returns the offset of the `account_get_num_procedures` kernel procedure.
-#!
-#! Inputs:  []
-#! Outputs: [proc_offset]
-#!
-#! Where:
-#! - proc_offset is the offset of the `account_get_num_procedures` kernel procedure required to
-#!   get the address where this procedure is stored.
-export.account_get_num_procedures_offset
-    push.ACCOUNT_GET_NUM_PROCEDURES_OFFSET
-end
 
-#! Returns the offset of the `account_get_procedure_root` kernel procedure.
-#!
-#! Inputs:  []
-#! Outputs: [proc_offset]
-#!
-#! Where:
-#! - proc_offset is the offset of the `account_get_procedure_root` kernel procedure required to
-#!   get the address where this procedure is stored.
-export.account_get_procedure_root_offset
-    push.ACCOUNT_GET_PROCEDURE_ROOT_OFFSET
-end
 
 ### FAUCET ######################################
 
