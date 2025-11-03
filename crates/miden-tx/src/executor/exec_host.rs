@@ -12,7 +12,7 @@ use miden_objects::account::{
 };
 use miden_objects::assembly::debuginfo::Location;
 use miden_objects::assembly::{SourceFile, SourceManagerSync, SourceSpan};
-use miden_objects::asset::{Asset, AssetWitness, FungibleAsset, VaultKey};
+use miden_objects::asset::{Asset, AssetVaultKey, AssetWitness, FungibleAsset};
 use miden_objects::block::BlockNumber;
 use miden_objects::crypto::merkle::SmtProof;
 use miden_objects::note::{NoteInputs, NoteMetadata, NoteRecipient};
@@ -348,7 +348,7 @@ where
         &self,
         current_account_id: AccountId,
         vault_root: Word,
-        asset_key: VaultKey,
+        asset_key: AssetVaultKey,
     ) -> Result<Vec<AdviceMutation>, TransactionKernelError> {
         let asset_witness = self
             .base_host

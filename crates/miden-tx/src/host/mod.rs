@@ -37,7 +37,7 @@ use miden_objects::account::{
     StorageMap,
     StorageSlotType,
 };
-use miden_objects::asset::{Asset, AssetVault, FungibleAsset, VaultKey};
+use miden_objects::asset::{Asset, AssetVault, AssetVaultKey, FungibleAsset};
 use miden_objects::note::{NoteId, NoteInputs, NoteMetadata, NoteRecipient, NoteScript};
 use miden_objects::transaction::{
     InputNote,
@@ -907,7 +907,7 @@ where
         let vault_root_ptr = stack_top[1];
         let vault_root = process.get_vault_root(vault_root_ptr)?;
 
-        let vault_key = VaultKey::from_account_id(faucet_id).ok_or_else(|| {
+        let vault_key = AssetVaultKey::from_account_id(faucet_id).ok_or_else(|| {
             TransactionKernelError::other(format!(
                 "provided faucet ID {faucet_id} is not valid for fungible assets"
             ))
@@ -939,7 +939,7 @@ where
     fn on_account_vault_asset_accessed(
         &self,
         process: &ProcessState,
-        vault_key: VaultKey,
+        vault_key: AssetVaultKey,
         current_vault_root: Word,
     ) -> Result<TransactionEventHandling, TransactionKernelError> {
         let leaf_index = Felt::new(vault_key.to_leaf_index().value());
@@ -1092,7 +1092,7 @@ pub(super) enum TransactionEventData {
         /// The vault root identifying the asset vault from which a witness is requested.
         vault_root: Word,
         /// The asset for which a witness is requested.
-        asset_key: VaultKey,
+        asset_key: AssetVaultKey,
     },
     /// The data necessary to request a storage map witness from the data store.
     AccountStorageMapWitness {
